@@ -10,25 +10,51 @@ using System.Text.RegularExpressions;
 
 namespace SeuCadastro
 {
-    partial class Program
+    public class Informacoes
     {
-
-        static void InformacaoDeCadastro(List<Candidatos> listaDeCandidatos)
-        
+        private List<Candidatos> ListaDeCandidatos { get; set; }
+        public Informacoes()
         {
-        inicioinfo:
+            this.ListaDeCandidatos = new List<Candidatos>();
+            try
+            {
+                string caminho = "Candidatos.txt";
+                string[] colaboradoresDb = File.ReadAllLines(caminho);
+
+                foreach (var cadidatoDb in colaboradoresDb)
+                {
+                    var propArray = cadidatoDb.Split(',');
+                    var cadidato = new Candidatos
+                    {
+                        Id = Convert.ToInt32(propArray[0]),
+                        Nome = propArray[1],
+                        Telefone = propArray[2],
+                        Salario = Convert.ToDouble(propArray[3]),
+                        Email = propArray[4],
+                        Profissoes = propArray[5],
+                        Idade = Convert.ToInt32(propArray[6])
+                    };
+                    ListaDeCandidatos.Add(cadidato);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                ListaDeCandidatos = new List<Candidatos>();
+            }
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Digitou |2|");
             Console.ResetColor();
-        inicioinfo2:
+        }
+        public void InformacaoDeCadastro()
+        {
             Console.WriteLine("Candidatos Cadastrados;");
             Console.WriteLine();
 
-        
-
-            foreach (var c in listaDeCandidatos)
+            foreach (var c in ListaDeCandidatos)
             {
                 Console.Write("    Id: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -40,26 +66,35 @@ namespace SeuCadastro
                 Console.ResetColor();
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
             }
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("Digite o - Id - do Candidato pra mais detalhes.");
-            Console.ResetColor();
-            Console.WriteLine("<|Enter| Retorna ");
-            Console.WriteLine();
+
+            if (ListaDeCandidatos.Count() == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Nenhum registro encontrado");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.WriteLine("<|Enter| Retorna ");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Digite o - Id - do Candidato pra mais detalhes.");
+                Console.ResetColor();
+                Console.WriteLine("<|Enter| Retorna ");
+                Console.WriteLine();
+            }
 
             try
             {
-
                 string imput = Console.ReadLine();
                 int opicao = string.IsNullOrWhiteSpace(imput) ? 0 : int.Parse(imput);
                 Console.Clear();
                 if (opicao == 0)
                     goto retorno;
 
-                
-                var dadoscompleto = listaDeCandidatos.Where(c => c.Id == opicao).FirstOrDefault();
-
-                
+                var dadoscompleto = ListaDeCandidatos.Where(c => c.Id == opicao).FirstOrDefault();
 
                 if (dadoscompleto == null)
                 {
@@ -70,10 +105,8 @@ namespace SeuCadastro
                     Console.WriteLine("<|Enter| Retorna ");
                     Console.ReadLine();
                     Console.Clear();
-                    goto inicioinfo2;
+                    InformacaoDeCadastro();
                 }
-
-
 
                 Console.Clear();
                 Console.WriteLine();
@@ -117,15 +150,15 @@ namespace SeuCadastro
                 Console.ReadLine();
                 Console.Clear();
 
-                goto inicioinfo2;
+                InformacaoDeCadastro();
             }
-            catch 
+            catch
             {
                 Console.Clear();
-                Console.WriteLine(  "Opição invalida, Digite apenas numeros");
+                Console.WriteLine("Opição invalida, Digite apenas numeros");
                 Console.ReadLine();
                 Console.Clear();
-                goto inicioinfo2;
+                InformacaoDeCadastro();
             }
         retorno:;
         }
