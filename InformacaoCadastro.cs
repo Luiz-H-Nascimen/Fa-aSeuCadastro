@@ -92,7 +92,7 @@ namespace SeuCadastro
                 int opicao = string.IsNullOrWhiteSpace(imput) ? 0 : int.Parse(imput);
                 Console.Clear();
                 if (opicao == 0)
-                    goto retorno;
+                    new Menus().MenuInicial();
 
                 var dadoscompleto = ListaDeCandidatos.Where(c => c.Id == opicao).FirstOrDefault();
 
@@ -160,7 +160,6 @@ namespace SeuCadastro
                 Console.Clear();
                 InformacaoDeCadastro();
             }
-        retorno:;
         }
     }
 }
