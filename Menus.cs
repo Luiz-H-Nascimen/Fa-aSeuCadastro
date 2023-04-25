@@ -32,7 +32,7 @@ namespace SeuCadastro
                 Console.WriteLine("'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'");
                 Console.WriteLine();
                 Console.ResetColor();
-                Opicao = int.Parse(Console.ReadLine()); 
+                Opicao = int.Parse(Console.ReadLine());
                 switch (Opicao)
                 {
                     case 1:
@@ -45,10 +45,12 @@ namespace SeuCadastro
                         MenuInicial();
                         break;
                     case 3:
+                        new Alterando().AlterarCandidato();
                         Console.Clear();
                         MenuInicial();
                         break;
                     case 4:
+                        new Deletando().DeletarCandidato();
                         Console.Clear();
                         MenuInicial();
                         break;

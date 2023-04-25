@@ -94,9 +94,9 @@ namespace SeuCadastro
                 if (opicao == 0)
                     new Menus().MenuInicial();
 
-                var dadoscompleto = ListaDeCandidatos.Where(c => c.Id == opicao).FirstOrDefault();
+                var candidatoalterado = ListaDeCandidatos.Where(c => c.Id == opicao).FirstOrDefault();
 
-                if (dadoscompleto == null)
+                if (candidatoalterado == null)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Id não estar CADASTRADO, tente novamente.");
@@ -112,37 +112,37 @@ namespace SeuCadastro
                 Console.WriteLine();
                 Console.Write("Id: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Id);
+                Console.WriteLine(candidatoalterado.Id);
                 Console.ResetColor();
 
                 Console.Write("Nome: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Nome);
+                Console.WriteLine(candidatoalterado.Nome);
                 Console.ResetColor();
 
                 Console.Write("Idade: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Idade);
+                Console.WriteLine(candidatoalterado.Idade);
                 Console.ResetColor();
 
                 Console.Write("Telefone: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Telefone);
+                Console.WriteLine(candidatoalterado.Telefone);
                 Console.ResetColor();
 
                 Console.Write("E-mail: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Email);
+                Console.WriteLine(candidatoalterado.Email);
                 Console.ResetColor();
 
                 Console.Write("Profissão: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Profissoes);
+                Console.WriteLine(candidatoalterado.Profissoes);
                 Console.ResetColor();
 
                 Console.Write("Salario: ");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine(dadoscompleto.Salario);
+                Console.WriteLine(candidatoalterado.Salario);
                 Console.ResetColor();
 
                 Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");

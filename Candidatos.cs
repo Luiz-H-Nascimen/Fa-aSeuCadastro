@@ -38,7 +38,7 @@ namespace SeuCadastro
         {
             return $"{Id},{Nome},{Telefone},{Salario},{Email},{Profissoes},{Idade}";
         }
-        
+
 
     }
 

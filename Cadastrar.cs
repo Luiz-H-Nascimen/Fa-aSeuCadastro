@@ -17,7 +17,7 @@ namespace SeuCadastro
     public class Cadastro
     {
         public Cadastro() { }
-        
+
         public void Cadastrar()
         {
         inicio:
@@ -29,6 +29,8 @@ namespace SeuCadastro
             Random idaleatorio = new Random();
             var id = idaleatorio.Next(1000);
             double salario = 1500;
+
+
 
             try
             {
@@ -48,19 +50,16 @@ namespace SeuCadastro
                         Console.WriteLine();
                         Console.WriteLine("Digite o nome:");
                         Console.WriteLine();
-                        
 
                         Regex regex = new Regex("[A-z]");
                         nome = Console.ReadLine();
 
                         while (!regex.IsMatch(nome))
                         {
-                            
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("Tente Novamente! Digite |Enter|");
                             Console.ResetColor();
                             Console.ReadLine();
-
                             Cadastrar();
                         }
                         if (nome == "r" || nome == "R")
@@ -92,7 +91,7 @@ namespace SeuCadastro
                             Console.Write("|R|");
                             Console.ResetColor();
                             Console.WriteLine("<Para retornar menu inicial. ");
-                           
+
                             telefone = Console.ReadLine();
 
                             if (telefone == "r" || telefone == "R")
@@ -100,12 +99,12 @@ namespace SeuCadastro
                                 Console.Clear();
                                 goto retorno;
                             }
-                            if(telefone == "t" || telefone == "T")
+                            if (telefone == "t" || telefone == "T")
                             {
                                 goto nome;
                             }
                             if (telefone.Length <= 9)
-                            { 
+                            {
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine("Tente Novamente! Digite |Enter|");
                                 Console.ResetColor();
@@ -118,7 +117,6 @@ namespace SeuCadastro
                             {
                                 goto telefone;
                             }
-
                         }
                         while (telefone == string.Empty);
                         {
@@ -152,7 +150,6 @@ namespace SeuCadastro
                         Console.ResetColor();
                         Console.WriteLine("<Para retornar menu inicial. ");
                         Console.ResetColor();
-                        
 
                         Regex regex = new Regex("[A-z]");
                         email = Console.ReadLine();
@@ -180,7 +177,7 @@ namespace SeuCadastro
                     }
 
                 salario:
-                    
+
                     try
                     {
                         Console.Clear();
@@ -208,7 +205,6 @@ namespace SeuCadastro
                         Console.WriteLine("[40 anos]¨");
                         Console.ResetColor();
 
-                        
 
                         int opicao = int.Parse(Console.ReadLine());
                         switch (opicao)
@@ -256,7 +252,7 @@ namespace SeuCadastro
                         somaidades += Idade;
                     }
 
-                     idade = somaidades;
+                    idade = somaidades;
 
                     if (idade >= 40)
                     {
@@ -281,12 +277,17 @@ namespace SeuCadastro
                         Console.ReadLine();
                     }
 
-                    string caminho = "C:\\Users\\Rafael\\Desktop\\FacaSeuCadastro-LuizH\\Projeto Thitex\\ArquivoTXT.Candidatos.txt";
-                    StreamWriter sw = new StreamWriter(caminho);
-                    sw.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
-                    sw.Close();
+                    string caminho = "Candidatos.txt";
+                    //StreamWriter sw = new StreamWriter(caminho);
+                    //sw.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
+                    //sw.Close();
 
-                    Console.Clear();
+                    using (StreamWriter writer = new StreamWriter(caminho, true))
+                    {
+                        writer.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
+                    }
+
+                        Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine("Candidato Cadastro com SUCESSO!!!");
@@ -301,10 +302,10 @@ namespace SeuCadastro
 
             }
             catch { }
-          
-          
+
+
         retorno:;
         }
-    
+
     }
 }

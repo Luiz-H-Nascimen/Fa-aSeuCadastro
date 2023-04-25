@@ -15,5 +15,7 @@ namespace SeuCadastro
             Console.WriteLine();
             new Menus().MenuInicial();
         }
+
+
     }
 }
