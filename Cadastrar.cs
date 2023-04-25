@@ -17,10 +17,9 @@ namespace SeuCadastro
     public class Cadastro
     {
         public Cadastro() { }
-        
-        public List<Candidatos> Cadastrar(List<Candidatos> candidatos)
-        {
 
+        public void Cadastrar()
+        {
         inicio:
             var nome = string.Empty;
             string telefone = string.Empty;
@@ -32,16 +31,11 @@ namespace SeuCadastro
             double salario = 1500;
 
 
+
             try
             {
                 try
                 {
-                    Console.Clear();
-
-
-                    List<Candidatos> listaDeCandidatos = new List<Candidatos>();
-
-
                 nome:
                     try
                     {
@@ -56,20 +50,17 @@ namespace SeuCadastro
                         Console.WriteLine();
                         Console.WriteLine("Digite o nome:");
                         Console.WriteLine();
-                        
 
                         Regex regex = new Regex("[A-z]");
                         nome = Console.ReadLine();
 
                         while (!regex.IsMatch(nome))
                         {
-                            
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.WriteLine("Tente Novamente! Digite |Enter|");
                             Console.ResetColor();
                             Console.ReadLine();
-
-                            goto inicio;
+                            Cadastrar();
                         }
                         if (nome == "r" || nome == "R")
                         {
@@ -100,7 +91,7 @@ namespace SeuCadastro
                             Console.Write("|R|");
                             Console.ResetColor();
                             Console.WriteLine("<Para retornar menu inicial. ");
-                           
+
                             telefone = Console.ReadLine();
 
                             if (telefone == "r" || telefone == "R")
@@ -108,12 +99,12 @@ namespace SeuCadastro
                                 Console.Clear();
                                 goto retorno;
                             }
-                            if(telefone == "t" || telefone == "T")
+                            if (telefone == "t" || telefone == "T")
                             {
                                 goto nome;
                             }
                             if (telefone.Length <= 9)
-                            { 
+                            {
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.WriteLine("Tente Novamente! Digite |Enter|");
                                 Console.ResetColor();
@@ -126,7 +117,6 @@ namespace SeuCadastro
                             {
                                 goto telefone;
                             }
-
                         }
                         while (telefone == string.Empty);
                         {
@@ -160,7 +150,6 @@ namespace SeuCadastro
                         Console.ResetColor();
                         Console.WriteLine("<Para retornar menu inicial. ");
                         Console.ResetColor();
-                        
 
                         Regex regex = new Regex("[A-z]");
                         email = Console.ReadLine();
@@ -188,7 +177,7 @@ namespace SeuCadastro
                     }
 
                 salario:
-                    
+
                     try
                     {
                         Console.Clear();
@@ -216,7 +205,6 @@ namespace SeuCadastro
                         Console.WriteLine("[40 anos]¨");
                         Console.ResetColor();
 
-                        
 
                         int opicao = int.Parse(Console.ReadLine());
                         switch (opicao)
@@ -264,7 +252,7 @@ namespace SeuCadastro
                         somaidades += Idade;
                     }
 
-                     idade = somaidades;
+                    idade = somaidades;
 
                     if (idade >= 40)
                     {
@@ -289,6 +277,12 @@ namespace SeuCadastro
                         Console.ReadLine();
                     }
 
+                    string caminho = "Candidatos.txt";
+                    using (StreamWriter writer = new StreamWriter(caminho, true))
+                    {
+                        writer.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
+                    }
+
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -306,102 +300,8 @@ namespace SeuCadastro
             catch { }
 
 
-
-            candidatos.Add(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
-           retorno:
-            return candidatos;
-
+        retorno:;
         }
-    
+
     }
 }
-
-/*using (var fluxosaida = new FileStream("Funcionarios.txt", FileMode.Append))
-using (var sr = new StreamWriter(fluxosaida))
-{
-    foreach (var item in listaDeCandidatos)
-    {
-        sr.WriteLine(item.ToString());
-    }
-}
-}
-if (quantidade == 0)
-{
-
-
-goto inicio2;
-}
-if (quantidade < 0)
-{
-Console.Clear();
-Console.ForegroundColor = ConsoleColor.Red;
-Console.WriteLine("Opição invalida. Só números apartir '0' são permitidos!");
-Console.WriteLine("Tecle enter...");
-Console.ReadLine();
-Console.ResetColor();
-goto inicio2;
-}
-
-}
-catch (IOException e)
-{
-
-Console.WriteLine(e.Message);
-}
-
-}
-catch (Exception)
-{
-Console.Clear();
-Console.ForegroundColor = ConsoleColor.Red;
-Console.WriteLine("Opição invalida. Só números apartir '0' são permitidos!");
-Console.ResetColor();
-Console.WriteLine("Tecle enter...");
-Console.ReadLine();
-
-goto inicio2;
-}
-Console.Clear();
-Console.ForegroundColor = ConsoleColor.Green;
-Console.WriteLine("Cadastro finalizado!");
-Console.ResetColor();
-Console.WriteLine();
-Console.WriteLine("Tecle enter e retornar ao menu.");
-Console.ReadLine();
-
-inicio2:;
-
-
-
-//IDADE
-
-//Console.WriteLine("Quantas pessoas serão incluídas no cálculo?");
-//int numPessoas = int.Parse(Console.ReadLine());
-//int somaIdades = 0;
-//for (int i = 0; i < numPessoas; i++)
-//{
-//    Console.WriteLine("Digite o ano de nascimento da pessoa " + (i + 1) + ":");
-//    int anoNascimento = int.Parse(Console.ReadLine());
-//    int idade = DateTime.Now.Year - anoNascimento;
-//    somaIdades += idade;
-//}
-//Console.WriteLine("A soma das idades é: " + somaIdades);
-
-
-
-
-//Console.WriteLine("Digite seu nome:");
-//string nome = Console.ReadLine();
-//Console.WriteLine("Olá " + nome + " Digete a data de nascimento:");
-//string dataDeNascimento = Console.ReadLine();
-//Console.WriteLine("Telefone :");
-//string telefone = Console.ReadLine();
-//Console.WriteLine("E-mail:");
-//string email = Console.ReadLine();
-//Console.WriteLine("Escolha a Profissão");
-//Console.WriteLine("Reajustes referente ao salario de R$ 1.500,00");*/
-
-
-
-
-
