@@ -278,16 +278,12 @@ namespace SeuCadastro
                     }
 
                     string caminho = "Candidatos.txt";
-                    //StreamWriter sw = new StreamWriter(caminho);
-                    //sw.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
-                    //sw.Close();
-
                     using (StreamWriter writer = new StreamWriter(caminho, true))
                     {
                         writer.WriteLine(new Candidatos().Creat(id, nome, telefone, salario, email, profissoes, idade));
                     }
 
-                        Console.Clear();
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine("Candidato Cadastro com SUCESSO!!!");
