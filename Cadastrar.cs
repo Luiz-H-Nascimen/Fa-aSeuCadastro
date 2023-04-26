@@ -270,7 +270,7 @@ namespace SeuCadastro
                         Console.Write("|T|");
                         Console.ResetColor();
                         Console.WriteLine("<Tela anterior|Cargo|");
-                        Console.ForegroundColor= ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write(profissoes);
                         Console.Write("                                           ");
                         Console.BackgroundColor = ConsoleColor.White;
@@ -354,7 +354,7 @@ namespace SeuCadastro
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine("Opção invalida, Digite apenas numeros");
                         Console.ResetColor();
-                        
+
                         goto idade;
                     }
 
