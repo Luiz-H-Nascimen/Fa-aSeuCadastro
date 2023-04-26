@@ -155,7 +155,7 @@ namespace SeuCadastro
             catch
             {
                 Console.Clear();
-                Console.WriteLine("Opição invalida, Digite apenas numeros");
+                Console.WriteLine("Opção invalida, Digite apenas numeros");
                 Console.ReadLine();
                 Console.Clear();
                 InformacaoDeCadastro();

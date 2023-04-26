@@ -30,8 +30,6 @@ namespace SeuCadastro
             var id = idaleatorio.Next(1000);
             double salario = 1500;
 
-
-
             try
             {
                 try
@@ -41,15 +39,18 @@ namespace SeuCadastro
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write("Digitou |1|                  ");
+                        Console.WriteLine("Digitou |1|");
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("                              ");
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write("|R|");
                         Console.ResetColor();
-                        Console.WriteLine("<Para retornar menu inicial. ");
-                        Console.WriteLine();
+                        Console.WriteLine("<Para retornar |Menu Inicial| ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.ResetColor();
                         Console.WriteLine("Digite o nome:");
-                        Console.WriteLine();
 
                         Regex regex = new Regex("[A-z]");
                         nome = Console.ReadLine();
@@ -79,18 +80,20 @@ namespace SeuCadastro
                         do
                         {
                             Console.Clear();
+                            Console.BackgroundColor = ConsoleColor.DarkYellow;
                             Console.Write("                                 ");
+                            Console.ResetColor();
                             Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.Write("|T|");
                             Console.ResetColor();
-                            Console.WriteLine("<Tela anterior(Nome).");
+                            Console.WriteLine("<Tela anterior|Nome|");
                             Console.Write("Digite o telefone:               ");
                             Console.BackgroundColor = ConsoleColor.White;
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.Write("|R|");
                             Console.ResetColor();
-                            Console.WriteLine("<Para retornar menu inicial. ");
+                            Console.WriteLine("<Para retornar|Menu Inicial| ");
 
                             telefone = Console.ReadLine();
 
@@ -132,23 +135,26 @@ namespace SeuCadastro
                     try
                     {
                         Console.Clear();
-                        Console.Write("Opção não é obrigatoria.>Proximo:");
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("Não é obrigatorio informa o E-MAIL.        ");
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine("|Enter|");
+                        Console.Write("|Enter|");
                         Console.ResetColor();
+                        Console.WriteLine("<Proxima.");
                         Console.Write("                                           ");
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write("|T|");
                         Console.ResetColor();
-                        Console.WriteLine("<Tela anterior(Telefone).");
+                        Console.WriteLine("<Tela anterior|Telefone|");
                         Console.Write("Digite o E-mail:                           ");
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write("|R|");
                         Console.ResetColor();
-                        Console.WriteLine("<Para retornar menu inicial. ");
+                        Console.WriteLine("<Para retornar|Menu Inicial| ");
                         Console.ResetColor();
 
                         Regex regex = new Regex("[A-z]");
@@ -156,8 +162,8 @@ namespace SeuCadastro
 
                         while (!regex.IsMatch(email))
                         {
-                            goto email;
-
+                            Console.Clear();
+                            goto cargo;
                         }
                         if (email == "r" || email == "R")
                         {
@@ -173,18 +179,31 @@ namespace SeuCadastro
                     catch
                     {
                         Console.Clear();
-                        goto email;
+                        goto cargo;
                     }
 
-                salario:
+                cargo:
 
                     try
                     {
                         Console.Clear();
-                        Console.WriteLine("Escolha um cargo:");
                         Console.BackgroundColor = ConsoleColor.DarkYellow;
                         Console.ForegroundColor = ConsoleColor.Black;
-                        Console.WriteLine();
+                        Console.Write("Escolha um cargo:                    ");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("|T|");
+                        Console.ResetColor();
+                        Console.WriteLine("<Tela anterior|E-mail|");
+                        Console.Write("                                     ");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("|R|");
+                        Console.ResetColor();
+                        Console.WriteLine("<Para retornar|Menu Inicial| ");
+                        Console.ResetColor();
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
                         Console.WriteLine("'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'");
                         Console.WriteLine("'   Digite:|1| - Pedreiro         '");
                         Console.WriteLine("'   Digite:|2| - Carpinteiro      '");
@@ -192,19 +211,6 @@ namespace SeuCadastro
                         Console.WriteLine("'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'");
                         Console.WriteLine();
                         Console.ResetColor();
-                        Console.Write("¨Salario inicial de ");
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("R$ 1500,00¨");
-                        Console.ResetColor();
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write("¨Reajuste de +15%");
-                        Console.ResetColor();
-                        Console.Write(" para funcionarios acima de ");
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("[40 anos]¨");
-                        Console.ResetColor();
-
 
                         int opicao = int.Parse(Console.ReadLine());
                         switch (opicao)
@@ -230,51 +236,126 @@ namespace SeuCadastro
                                 Console.WriteLine("Digite |Enter| para retornar.");
                                 Console.ReadLine();
                                 Console.Clear();
-                                goto salario;
+                                goto cargo;
                                 //break;
+
+
                         }
+
                     }
                     catch (Exception)
                     {
-                        Console.Clear();
+                        email = Console.ReadLine();
+                        if (email == "t" || email == "T")
+                        {
+                            Console.Clear();
+                            goto email;
+                        }
+                        if (email == "r" || email == "R")
+                        {
+                            Console.Clear();
+                            goto retorno;
+                        }
                     }
 
                 idade:
-
-                    int numpessoas = 1;
-                    int somaidades = 0;
-                    for (int e = 0; e < numpessoas; e++)
+                    try
                     {
-                        Console.WriteLine();
-                        Console.WriteLine("Digite o ano de nascimento:");
-                        int anonascimento = int.Parse(Console.ReadLine());
-                        int Idade = DateTime.Now.Year - anonascimento;
-                        somaidades += Idade;
-                    }
-
-                    idade = somaidades;
-
-                    if (idade >= 40)
-                    {
-                        salario += salario * 0.15;
-                        Console.WriteLine();
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write("Salario de R$ ");
-                        Console.WriteLine(salario + ",00");
+                        Console.Clear();
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("Cargo:                                        ");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("|T|");
                         Console.ResetColor();
-                        Console.Write("com reajuste.");
-                        Console.ReadLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("Salario de R$ " + salario + ",00");
+                        Console.WriteLine("<Tela anterior|Cargo|");
+                        Console.ForegroundColor= ConsoleColor.DarkYellow;
+                        Console.Write(profissoes);
+                        Console.Write("                                           ");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write("|R|");
                         Console.ResetColor();
-                        Console.WriteLine("sem reajuste.");
-                        Console.ReadLine();
+                        Console.WriteLine("<Para retornar|Menu Inicial| ");
+                        Console.Write("Salario inicial de ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("R$ 1500,00");
+                        Console.ResetColor();
+                        Console.Write("Tera um reajuste de");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine(" +15%");
+                        Console.ResetColor();
+                        Console.Write("para funcionarios maiores de ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("40 anos.");
+                        Console.ResetColor();
+
+                        int numpessoas = 1;
+                        int somaidades = 0;
+                        for (int e = 0; e < numpessoas; e++)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("__________________________________________");
+                            Console.ResetColor();
+                            Console.WriteLine("Digite o ANO DE NASCIMENTO:");
+                            int anonascimento = int.Parse(Console.ReadLine());
+                            int Idade = DateTime.Now.Year - anonascimento;
+                            somaidades += Idade;
+                            idade = somaidades;
+
+                            if (anonascimento <= 1953 || anonascimento >= 2005)
+                            {
+                                Console.WriteLine("Idade: " + Idade + " anos");
+                                Console.WriteLine("Não é permitido o cadastro de candidatos (-18 anos ou +70 anos).");
+                                Console.WriteLine();
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine("Tente Novamente! Voltando ao inicio do cadastro.");
+                                Console.WriteLine("OBRIGADO por participar.");
+                                Console.ResetColor();
+                                Console.ReadLine();
+                                goto nome;
+                            }
+                            if (idade >= 40)
+                            {
+                                salario += salario * 0.15;
+                                Console.WriteLine("Idade: " + Idade + " anos");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.Write("O salario sera de R$ " + salario + ",00");
+                                Console.ResetColor();
+                                Console.WriteLine(" (COM REAJUSTE)");
+                                Console.ReadLine();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Idade: " + Idade + " anos");
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.Write("O salario sera de R$ " + salario + ",00");
+                                Console.ResetColor();
+                                Console.WriteLine(" (SEM REAJUSTE)");
+                                Console.ReadLine();
+                            }
+
+                        }
+                    }
+                    catch
+                    {
+                        email = Console.ReadLine();
+                        if (email == "t" || email == "T")
+                        {
+                            Console.Clear();
+                            goto cargo;
+                        }
+                        if (email == "r" || email == "R")
+                        {
+                            Console.Clear();
+                            goto retorno;
+                        }
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Opção invalida, Digite apenas numeros");
+                        Console.ResetColor();
+                        
+                        goto idade;
                     }
 
                     string caminho = "Candidatos.txt";
@@ -290,18 +371,17 @@ namespace SeuCadastro
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.ResetColor();
                     Console.WriteLine();
-                    Console.WriteLine("Tecle |Enter| para retornar ao menu inicial.");
+                    Console.WriteLine("Tecle |Enter| para retornar ao |Menu inicial|.");
                     Console.ReadLine();
                     Console.Clear();
+                    new Menus().MenuInicial();
                 }
                 catch { }
 
             }
             catch { }
-
-
         retorno:;
         }
-
     }
+
 }

@@ -13,16 +13,15 @@ namespace SeuCadastro
         {
             try
             {
-                Console.WriteLine("Temos Vaga de EMPREGO para:");
+                Console.WriteLine("Cargos dinponíveis:");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("(Pedreiro, Carpinteiro ou Eletrecista)");
+                Console.WriteLine("(PEDREIRO - CARPINTEIRO - ELETRICISTA)");
                 Console.ResetColor();
                 int Opicao = 0;
                 Console.WriteLine();
                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.WriteLine("Digite a opção desejada:");
-                Console.WriteLine();
                 Console.WriteLine("'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'");
                 Console.WriteLine("'   |1|. Cadrastar                '");
                 Console.WriteLine("'   |2|. Informações do cadastro  '");
