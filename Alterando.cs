@@ -62,9 +62,7 @@ namespace SeuCadastro
             var id = idaleatorio.Next(1000);
             double salario = 1500;
 
-
             Candidatos candidatos = new Candidatos();
-
 
             foreach (var c in ListaDeCandidatos)
             {
@@ -168,6 +166,10 @@ namespace SeuCadastro
                     Console.ResetColor();
                     Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     Console.WriteLine("<|Enter| Retorna ");
+                    
+                    
+                    AlterarCandidato();
+                    
 
                 }
 
@@ -186,11 +188,9 @@ namespace SeuCadastro
 
                         while (!regex.IsMatch(nome))
                         {
-
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("Tente Novamente! Digite |Enter|");
+                            Console.WriteLine("Tente Novamente! Digite apenas letras. |Enter|");
                             Console.ResetColor();
-
                             goto nome;
                         }
                         if (nome == "r" || nome == "R")
@@ -199,13 +199,17 @@ namespace SeuCadastro
                             goto alterando2;
                         }
 
-                        candidatos = candidatoalterado;
+                        candidatos.Id = candidatoalterado.Id;
                         candidatos.Nome = nome;
+                        candidatos.Idade = candidatoalterado.Idade;
+                        candidatos.Telefone = candidatoalterado.Telefone;
+                        candidatos.Email = candidatoalterado.Email;
+                        candidatos.Profissoes = candidatoalterado.Profissoes;
+                        candidatos.Salario = candidatoalterado.Salario;
 
                         ListaDeCandidatos.Remove(candidatoalterado);
                         ListaDeCandidatos.Add(candidatos);
                         AltualizarBaseDeDados();
-
                     }
                     catch { Console.Clear(); }
 
@@ -250,7 +254,7 @@ namespace SeuCadastro
                             {
 
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("Tente Novamente! Digite |Enter|");
+                                Console.WriteLine("Tente Novamente! Digite apenas numeros. |Enter|");
                                 Console.ResetColor();
                                 Console.ReadLine();
                                 Console.Clear();
@@ -506,7 +510,15 @@ namespace SeuCadastro
                 }
             alterando2:;
             }
-            catch { }
+            catch 
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Opção invalida, Tente novamente digitando apenas NUMEROS");
+                Console.ReadLine();
+                Console.Clear();
+                AlterarCandidato();
+            }
         }
 
         private void AltualizarBaseDeDados()

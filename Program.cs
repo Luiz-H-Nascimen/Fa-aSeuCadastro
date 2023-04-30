@@ -12,7 +12,7 @@ namespace SeuCadastro
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("Olá,seja BEM VINDO!!!");
-            Console.WriteLine("Faça seu CADASTRO para concorre as vagas de EMPREGO.");
+            Console.WriteLine("Faça seu CADASTRO para concorrer a vagas de EMPREGOS.");
             Console.WriteLine();
             new Menus().MenuInicial();
         }

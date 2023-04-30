@@ -40,7 +40,6 @@ namespace SeuCadastro
             }
             catch (Exception)
             {
-
                 ListaDeCandidatos = new List<Candidatos>();
             }
 
@@ -155,7 +154,8 @@ namespace SeuCadastro
             catch
             {
                 Console.Clear();
-                Console.WriteLine("Opção invalida, Digite apenas numeros");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Opção invalida, Tente novamente digitando apenas NUMEROS");
                 Console.ReadLine();
                 Console.Clear();
                 InformacaoDeCadastro();

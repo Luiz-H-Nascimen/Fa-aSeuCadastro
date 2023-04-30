@@ -58,7 +58,7 @@ namespace SeuCadastro
                         while (!regex.IsMatch(nome))
                         {
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Console.WriteLine("Tente Novamente! Digite |Enter|");
+                            Console.WriteLine("Tente Novamente! Digite apenas letra. |Enter|");
                             Console.ResetColor();
                             Console.ReadLine();
                             Cadastrar();
@@ -109,7 +109,7 @@ namespace SeuCadastro
                             if (telefone.Length <= 9)
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine("Tente Novamente! Digite |Enter|");
+                                Console.WriteLine("Tente Novamente! Digite apenas numeros. |Enter|");
                                 Console.ResetColor();
                                 Console.ReadLine();
                                 Console.Clear();
